@@ -6,8 +6,9 @@ docker run -d \
     -p 9443:9443 \
     -p 8000:8000 \
     -v /var/run/docker.sock:/var/run/docker.sock \
-    -v portainer_data:/data portainer/portainer-ce:latest \
-    --restart=always 
+    -v portainer_data:/data \
+    --restart always \
+    portainer/portainer-ce:latest
 
 # Calibre Docker:
 echo "Starting Calibre Docker container..."
@@ -26,7 +27,7 @@ docker run -d \
 # Plex Docker:
 echo "Starting Plex container..."
 docker run -d \
-    --name plex \
+    --name=plex \
     --network=host \
     -e TZ="Europe/London" \
     -v /media/plex/config:/config \
@@ -36,11 +37,11 @@ docker run -d \
 
 # Nginx Docker:
 echo "Starting Nginx container..."
-cp ./nginx/ /var/ -r
+cp DockerDeployment-main/nginx/ /var/ -r
 docker run -d \
     --name=nginx \
     -p 80:80 \
     -p 443:443 \
-    -v /var/nginx/:etc/nginx \
+    -v /var/nginx/:/etc/nginx \
     --restart unless-stopped \
     nginx:latest
