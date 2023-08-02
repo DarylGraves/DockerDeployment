@@ -6,9 +6,6 @@ Automated Installation of Docker Containers for Home Lab. Used for Linux headles
 - Virtual Machine with a second disk for Plex transcoding. Second disk not yet provisioned
 
 # Usage
-Run the below commands in the Terminal:
-- sudo apt install unzip
-- wget https://github.com/DarylGraves/DockerDeployment/archive/refs/heads/main.zip
-- unzip main.zip
-- chmod 777 DockerDeployment-main/RunMe.sh
-- sudo DockerDeployment-main/RunMe.sh
+Copy, paste and run the below commands in the Terminal:
+
+*sudo apt install unzip && wget https://github.com/DarylGraves/DockerDeployment/archive/refs/heads/main.zip && unzip main.zip && chmod 777 DockerDeployment-main/RunMe.sh && sudo DockerDeployment-main/RunMe.sh*
