@@ -10,5 +10,5 @@ Run the below commands in the Terminal:
 - sudo apt install unzip
 - wget https://github.com/DarylGraves/DockerDeployment/archive/refs/heads/main.zip
 - unzip main.zip
-- chmod 777 DockerDeployment/RunMe.sh
-- sudo DockerDeployment/RunMe.sh
+- chmod 777 DockerDeployment-main/RunMe.sh
+- sudo DockerDeployment-main/RunMe.sh
