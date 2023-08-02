@@ -11,7 +11,7 @@ if [ ! -f "$(which docker)" ]; then
 fi
 
 # Check Plex drive exists and is mapped to /media/plex
-if [ ! -d \media\plex ]; then
+if [ ! -d /media/plex ]; then
     echo "Script needs the secondary drive (\media\plex) to be partitioned and mounted before continuing"
     echo "Assuming the disk is /dev/sdb, do the following:"
     echo "  sudo mkfs -t ext3 /dev/sdb"
