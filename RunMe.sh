@@ -10,6 +10,9 @@ if [ ! -f "$(which docker)" ]; then
     exit 1
 fi
 
+# Install cifs-utils to map NAS drives
+apt install cifs-utils
+
 # Check Plex drive exists and is mapped to /media/plex
 if [ ! -d /media/plex ]; then
     echo "Script needs the secondary drive (\media\plex) to be partitioned and mounted before continuing"
@@ -20,6 +23,7 @@ if [ ! -d /media/plex ]; then
     echo "Disk needs a 'config' and 'cache' directory"
     exit 1
 fi
+
 
 # Create NAS mappings
 mkdir /media/nas_media
