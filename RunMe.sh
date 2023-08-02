@@ -53,25 +53,39 @@ read -p 'IP Address of NAS: ' IP
 
 # Adding drive mounting into fstab config
 echo "Adding mappings into fstab..."
-printf "//%s/Media/ /media/nas_media cifs credentials=/root/.smbcred_media,iocharset=utf8 0 0\n" $IP >> /etc/fstab
-printf "//%s/Books/ /media/nas_books cifs uid=1000,nobrl,credentials=/root/.smbcred_books,iocharset=utf8,file_mode=0777,dir_mode=0777,noperm 0 0\n" $IP >> /etc/fstab
-printf "//%s/Torrents/ /media/nas_torrents cifs credentials=/root/.smbcred_torrent,iochartset=utf8 0 0\n" $IP >> /etc/fstab
+if ! grep nas_media /etc/fstab; then
+    printf "//%s/Media/ /media/nas_media cifs credentials=/root/.smbcred_media,iocharset=utf8 0 0\n" $IP >> /etc/fstab
+fi
+
+if ! grep nas_books /etc/fstab; then
+    printf "//%s/Books/ /media/nas_books cifs uid=1000,nobrl,credentials=/root/.smbcred_books,iocharset=utf8,file_mode=0777,dir_mode=0777,noperm 0 0\n" $IP >> /etc/fstab
+fi
+
+if ! grep nas_torrents /etc/fstab; then
+    printf "//%s/Torrents/ /media/nas_torrents cifs credentials=/root/.smbcred_torrent,iochartset=utf8 0 0\n" $IP >> /etc/fstab
+fi
 
 # Prompting user for credentials and storing them in Root's Home Directory
-echo "Credentials for NAS Books:"
-read -p "   Username: " BOOKUSERNAME
-read -p "  Password: " BOOKPASSWORD
-printf "username=%s\npassword=%s" $BOOKUSERNAME $BOOKPASSWORD > /root/.smbcred_books
+if [ ! -d /root/.smbcred_books]; then
+    echo "Credentials for NAS Books:"
+    read -p "Username: " BOOKUSERNAME
+    read -p "Password: " BOOKPASSWORD
+    printf "username=%s\npassword=%s" $BOOKUSERNAME $BOOKPASSWORD > /root/.smbcred_books
+fi
 
-echo "Credentials for NAS Media:"
-read -p "   Username: " MEDIAUSERNAME
-read -p "  Password: " MEDIAPASSWORD
-printf "username=%s\npassword=%s" $MEDIAUSERNAME $MEDIAPASSWORD > /root/.smbcred_media
+if [ ! -d /root/.smbcred_media]; then
+    echo "Credentials for NAS Media:"
+    read -p "Username: " MEDIAUSERNAME
+    read -p "Password: " MEDIAPASSWORD
+    printf "username=%s\npassword=%s" $MEDIAUSERNAME $MEDIAPASSWORD > /root/.smbcred_media
+fi
 
-echo "Credentials for NAS Torrents:"
-read -p "   Username: " TORRENTUSERNAME
-read -p "  Password: " TORRENTPASSWORD
-printf "username=%s\npassword=%s" $TORRENTUSERNAME $TORRENTPASSWORD > /root/.smbcred_torrent
+if [ ! -d /root/.smbcred_torrent]; then
+    echo "Credentials for NAS Torrents:"
+    read -p "Username: " TORRENTUSERNAME
+    read -p "Password: " TORRENTPASSWORD
+    printf "username=%s\npassword=%s" $TORRENTUSERNAME $TORRENTPASSWORD > /root/.smbcred_torrent
+fi
 
 mount -a
 
