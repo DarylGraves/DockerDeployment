@@ -33,9 +33,20 @@ if [ ! -d /media/plex/cache ]; then
 fi
 
 # Create NAS mappings
-mkdir /media/nas_media
-mkdir /media/nas_books
-mkdir /media/nas_torrents
+if [ ! -d /media/nas_media ]; then
+    echo "Making /media/nas_media"
+    mkdir /media/nas_media
+fi
+
+if [ ! -d /media/nas_books ]; then
+    echo "Making /media/nas_books"
+    mkdir /media/nas_books
+fi
+
+if [ ! -d /media/nas_torrents ]; then
+    echo "Making /media/nas_torrents"
+    mkdir /media/nas_torrents
+fi
 
 # Keeping private details outside of the script
 read -p 'IP Address of NAS: ' IP
