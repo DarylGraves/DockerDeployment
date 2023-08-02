@@ -38,17 +38,17 @@ printf "//%s/Torrents/ /media/nas_torrents cifs credentials=/root/.smbcred_torre
 # Prompting user for credentials and storing them in Root's Home Directory
 echo "Credentials for NAS Books:"
 read -p "   Username: " BOOKUSERNAME
-read -ps "  Password: " BOOKPASSWORD
+read -sp "  Password: " BOOKPASSWORD
 printf "username=%s\npassword=%s" $BOOKUSERNAME $BOOKPASSWORD > /root/.smbcred_books
 
 echo "Credentials for NAS Media:"
 read -p "   Username: " MEDIAUSERNAME
-read -ps "  Password: " MEDIAPASSWORD
+read -sp "  Password: " MEDIAPASSWORD
 printf "username=%s\npassword=%s" $MEDIAUSERNAME $MEDIAPASSWORD > /root/.smbcred_media
 
 echo "Credentials for NAS Torrents:"
 read -p "   Username: " TORRENTUSERNAME
-read -ps "  Password: " TORRENTPASSWORD
+read -sp "  Password: " TORRENTPASSWORD
 printf "username=%s\npassword=%s" $TORRENTUSERNAME $TORRENTPASSWORD > /root/.smbcred_torrent
 
 mount -a
