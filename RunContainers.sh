@@ -47,6 +47,6 @@ docker run -d \
     nginx:latest
 
 IP=$(hostname -I | awk '{print $1}')
-printf "Don't forget to enrol Plex @ http://%s/32400/web\n" $IP
+printf "Don't forget to enrol Plex @ http://%s:32400/web\n" $IP
 printf "Note that nginx has hardcoded IPs and may need to be changed\n"
-printf "Transmission isn't stored here due to passwords, details can be found in OneDrive.\n"
+printf "Transmission deployment is done here due to passwords needing to be passed as parameters... Details can be found in OneDrive.\n"
