@@ -45,3 +45,6 @@ docker run -d \
     -v /var/nginx/:/etc/nginx \
     --restart unless-stopped \
     nginx:latest
+
+IP=$(hostanme -I | awk '{print $1}')
+printf "Don't forget to enrol Plex @ http://%s/32400/web"
