@@ -15,15 +15,22 @@ apt install cifs-utils
 
 # Check Plex drive exists and is mapped to /media/plex
 if [ ! -d /media/plex ]; then
-    echo "Script needs the secondary drive (\media\plex) to be partitioned and mounted before continuing"
-    echo "Assuming the disk is /dev/sdb, do the following:"
-    echo "  sudo mkfs -t ext3 /dev/sdb"
-    echo "Once partitioned, copy and paste the below into fstab and then reboot"
-    echo "  /dev/sdb /media/plex ext4 defaults 0 1"
-    echo "Disk needs a 'config' and 'cache' directory"
-    exit 1
+    echo "Setting up secondary disk"
+    read -p "Second disk location (e.g. /dev/sdb )" $SECONDDISK
+    mkfs -t ext3 $SECONDDISK
+    echo "$SECONDDISK /media/plex ext4 defaults 0 1/n" >> /etc/fstab
+    mount -a
 fi
 
+if [ ! -d /media/plex/config ]; then
+    echo "Making /media/plex/config"
+    mkdir /media/plex/config
+fi
+
+if [ ! -d /media/plex/cache ]; then
+    echo "Making /media/plex/cache"
+    mkdir /media/plex/cache
+fi
 
 # Create NAS mappings
 mkdir /media/nas_media
