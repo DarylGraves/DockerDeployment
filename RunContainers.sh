@@ -48,4 +48,5 @@ docker run -d \
 
 IP=$(hostname -I | awk '{print $1}')
 printf "Don't forget to enrol Plex @ http://%s/32400/web\n" $IP
+printf "Note that nginx has hardcoded IPs and may need to be changed\n"
 printf "Transmission isn't stored here due to passwords, details can be found in OneDrive.\n"
