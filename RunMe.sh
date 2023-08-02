@@ -16,8 +16,9 @@ apt install cifs-utils
 # Check Plex drive exists and is mapped to /media/plex
 if [ ! -d /media/plex ]; then
     echo "Setting up secondary disk"
-    read -p "Second disk location (e.g. /dev/sdb )" SECONDDISK
+    read -p "Second disk location (e.g. /dev/sdb): " SECONDDISK
     mkfs -t ext3 $SECONDDISK
+    mkdir /media/plex
     echo "$SECONDDISK /media/plex ext4 defaults 0 1\n" >> /etc/fstab
     mount -a
 fi
