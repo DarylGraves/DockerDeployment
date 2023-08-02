@@ -63,7 +63,7 @@ if ! grep nas_books /etc/fstab; then
 fi
 
 if ! grep nas_torrents /etc/fstab; then
-    printf "//%s/Torrents/ /media/nas_torrents cifs credentials=/root/.smbcred_torrent,iochartset=utf8 0 0\n" $IP >> /etc/fstab
+    printf "//%s/Torrents/ /media/nas_torrents cifs credentials=/root/.smbcred_torrent,iocharset=utf8 0 0\n" $IP >> /etc/fstab
 fi
 
 # Prompting user for credentials and storing them in Root's Home Directory
