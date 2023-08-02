@@ -91,5 +91,5 @@ fi
 mount -a
 
 # Now attempt to start the containers
-chmod 777 ./RunContainers.sh
-./RunContainers.sh
+chmod 777 DockerDeployment-main/RunContainers.sh
+DockerDeployment-main/RunContainers.sh
