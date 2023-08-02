@@ -66,21 +66,21 @@ if ! grep nas_torrents /etc/fstab; then
 fi
 
 # Prompting user for credentials and storing them in Root's Home Directory
-if [ ! -d /root/.smbcred_books]; then
+if [ ! -f /root/.smbcred_books]; then
     echo "Credentials for NAS Books:"
     read -p "Username: " BOOKUSERNAME
     read -p "Password: " BOOKPASSWORD
     printf "username=%s\npassword=%s" $BOOKUSERNAME $BOOKPASSWORD > /root/.smbcred_books
 fi
 
-if [ ! -d /root/.smbcred_media]; then
+if [ ! -f /root/.smbcred_media]; then
     echo "Credentials for NAS Media:"
     read -p "Username: " MEDIAUSERNAME
     read -p "Password: " MEDIAPASSWORD
     printf "username=%s\npassword=%s" $MEDIAUSERNAME $MEDIAPASSWORD > /root/.smbcred_media
 fi
 
-if [ ! -d /root/.smbcred_torrent]; then
+if [ ! -f /root/.smbcred_torrent]; then
     echo "Credentials for NAS Torrents:"
     read -p "Username: " TORRENTUSERNAME
     read -p "Password: " TORRENTPASSWORD
