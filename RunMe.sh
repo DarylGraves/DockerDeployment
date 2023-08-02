@@ -18,7 +18,7 @@ if [ ! -d /media/plex ]; then
     echo "Setting up secondary disk"
     read -p "Second disk location (e.g. /dev/sdb )" SECONDDISK
     mkfs -t ext3 $SECONDDISK
-    echo "$SECONDDISK /media/plex ext4 defaults 0 1/n" >> /etc/fstab
+    echo "$SECONDDISK /media/plex ext4 defaults 0 1\n" >> /etc/fstab
     mount -a
 fi
 
