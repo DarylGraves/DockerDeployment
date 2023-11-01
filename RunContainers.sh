@@ -46,6 +46,16 @@ docker run -d \
     --restart unless-stopped \
     nginx:latest
 
+# Homarr Docker:
+echo "Starting Homarr container..."
+docker run  \
+  --name homarr \
+  --restart unless-stopped \
+  -p 7575:7575 \
+  -v /media/nas_docker/Homarr/configs:/app/data/configs \
+  -v /media/nas_docker/Homarr/icons:/app/public/icons \
+  -d ghcr.io/ajnart/homarr:latest
+
 IP=$(hostname -I | awk '{print $1}')
 printf "Don't forget to enrol Plex @ http://%s:32400/web\n" $IP
 printf "Note that nginx has hardcoded IPs and may need to be changed\n"
