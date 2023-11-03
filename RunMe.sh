@@ -49,6 +49,11 @@ if [ ! -d /media/nas_torrents ]; then
     mkdir /media/nas_torrents
 fi
 
+if [ ! -d /media/nas_docker ]; then
+    echo "Making /media/nas_docker"
+    mkdir /media/nas_docker
+fi
+
 # Keeping private details outside of the script
 read -p 'IP Address of NAS: ' IP
 
@@ -60,6 +65,10 @@ fi
 
 if ! grep nas_books /etc/fstab; then
     printf "//%s/Books/ /media/nas_books cifs uid=1000,nobrl,credentials=/root/.smbcred_books,iocharset=utf8,file_mode=0777,dir_mode=0777,noperm 0 0\n" $IP >> /etc/fstab
+fi
+
+if ! grep nas_docker /etc/fstab; then
+    printf "//%s/Docker/ /media/nas_docker cifs uid=1000,credentials=/root/.smbcred_media,iocharset=utf8,file_mode=0777,dir_mode=0777,noperm 0 0\n" $IP >> /etc/fstab
 fi
 
 if ! grep nas_torrents /etc/fstab; then
