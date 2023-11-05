@@ -37,12 +37,12 @@ docker run -d \
 
 # Nginx Docker:
 echo "Starting Nginx container..."
-cp DockerDeployment-main/nginx/ /mnt/ -r
+cp DockerDeployment-main/nginx/ /var/ -r
 docker run -d \
     --name=nginx \
     -p 80:80 \
     -p 443:443 \
-    -v /mnt/nginx/:/etc/nginx \
+    -v /var/nginx/:/etc/nginx \
     --restart unless-stopped \
     nginx:latest
 
